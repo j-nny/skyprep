@@ -1,16 +1,18 @@
 import React from 'react';
-import Checkbox from './Checkbox';
 
-export default AddOns = () => {
+function AddOns({label}) {
+  console.log(label)
   return (
     <div className="add-ons-form">
       <label>
         <input 
           type="checkbox"
-          name="label"
-          checked=
+          name={label}
         />
+        {label}
       </label>
     </div>
   )
 }
+
+export default AddOns
