@@ -2,10 +2,11 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AddOns from './components/AddOns';
+import Summary from './components/Summary';
 
 // Data
-const basePrice = 24999
-const addOnOptions = [
+export const basePrice = 24999
+export const addOnOptions = [
   {
     "add_on" : "AWD Drivetrain",
     "price" : 2500
@@ -37,13 +38,6 @@ const discountMin = 8000
 const discount = 0.5
 const salesTax = 0.13
 
-const createAddOnOption = addOn => (
-  <AddOns 
-    label={addOn.add_on}
-    key={addOn.addOn}
-  />
-)
-
 const createAddOnOptions = addOnOptions.map(option => {
   return (
     <AddOns 
@@ -56,10 +50,17 @@ const createAddOnOptions = addOnOptions.map(option => {
 function App() {
   return (
     <main>
-      <section>
-        Base Price: $24,999
-      </section>
+      <img
+        src="images/car.png"
+        alt="New car"
+        height="100rem"
+      />
+      <br /><br />
+      <h3>Add Ons:</h3>
       {createAddOnOptions}
+      <br />
+      <h3>Payment Summary</h3>
+      <Summary />
     </main>
   );
 }

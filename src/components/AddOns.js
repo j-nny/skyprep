@@ -1,7 +1,6 @@
 import React from 'react';
 
 function AddOns({label}) {
-  console.log(label)
   return (
     <div className="add-ons-form">
       <label>

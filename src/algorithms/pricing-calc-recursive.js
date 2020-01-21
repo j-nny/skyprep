@@ -34,11 +34,11 @@ const calcDiscountedConfigPrice = () => {
 }
 
 // Admin fees are $1,200 + 2% of the fully configured vehicle price (assumes with discount)
-const calcAdminFee = package => adminBaseFee + (adminPercentFee * calcDiscountedConfigPrice(package)) // total 1370
+const calcAdminFee = pkg => adminBaseFee + (adminPercentFee * calcDiscountedConfigPrice(pkg)) // total 1370
 
 // Total price including base price, add-ons, discounts, admin fees, sales tax
-const calcTotalPrice = package => {
-  let total = (1 + salesTax) * (basePrice + calcDiscountedConfigPrice(package) + calcAdminFee(package))
+const calcTotalPrice = pkg => {
+  let total = (1 + salesTax) * (basePrice + calcDiscountedConfigPrice(pkg) + calcAdminFee(pkg))
   let packageAddOns = []
   configurations.forEach(e => packageAddOns.push(e.add_on))
   return `The total cost for this car is ${total.toFixed(2)} with the following configurations: ${packageAddOns.join(', ')}`
