@@ -21,7 +21,7 @@ const discountMin = 8000
 const discount = 0.5
 const salesTax = 0.13
 
-// Recursion is used in this helper function only, all other functions are the same as pricing-calculator.js
+// Recursion is used in this helper function
 const calcConfigPrice = configs => {
   if (configs.length === 1) {
     return configs[0].price

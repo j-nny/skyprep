@@ -35,8 +35,6 @@ const calcDiscountedConfigPrice = pkg => {
 // Admin fees are $1,200 + 2% of the fully configured vehicle price (assumes with discount)
 const calcAdminFee = pkg => adminBaseFee + (adminPercentFee * calcDiscountedConfigPrice(pkg))
 
-
-
 // Total price including base price, add-ons, discounts, admin fees, sales tax
 const calcTotalPrice = pkg => {
   return (1 + salesTax) * (basePrice + calcDiscountedConfigPrice(pkg) + calcAdminFee(pkg))
