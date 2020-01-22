@@ -48,7 +48,7 @@ class Summary extends Component{
           </tr>
           <tr>
             <th className="payment">Sales Tax</th>
-            <td className="payment-price">${(totalPrice * salesTax).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+            <td className="payment-price">${(salesTax * (basePrice + discConfigPrice + adminFee)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
           </tr>
           <tr>
             <th className="payment">Total</th>
