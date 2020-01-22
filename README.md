@@ -1,16 +1,5 @@
 A price calculator that calculates the final price of a car with add-on configurations, applicable discounts, admin fees, and sales tax. 
 
-## Installing
-```
-cd skyprep
-```
-```
-npm install
-```
-```
-npm start
-```
-
 ## Dependencies
 
     @testing-library/jest-dom: ^4.2.4
@@ -21,3 +10,8 @@ npm start
     react-redux: ^7.1.3
     react-scripts: 3.3.0
     redux: ^4.0.5
+
+## Getting Started
+
+- Install all dependencies (using the `npm install` command).
+- Run the development web server using the `npm start` command.
