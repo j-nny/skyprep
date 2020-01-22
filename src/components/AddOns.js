@@ -2,19 +2,15 @@ import React from 'react';
 
 import '../styles/addOns.css'
 
+const addToCart = (label) => {
+  console.log(label)
+}
+
 // checkbox component for given option
-function AddOns({ label, isSelected, price, id }) {
+function AddOns({ label, price, id }) {
   return (
-    <div className="add-on--option">
-      {/* <label>
-        <input 
-          type="checkbox"
-          name={label}
-          key={id}
-          isSelected={isSelected}
-        /> */}
-        <span className="add-on--name">{label} ${price}</span>
-      {/* </label> */}
+    <div className="add-on--option" onClick={() => addToCart(id)}>
+      <span className="add-on--name">{label} ${price}</span>
     </div>
   )
 }

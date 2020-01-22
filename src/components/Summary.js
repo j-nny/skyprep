@@ -22,35 +22,34 @@ function Summary() {
   const totalPrice = calcTotalPrice(addOnOptions)
 
   return (
-    <table className="summary-content">
-      <tbody>
-        <tr>
-          <th className="payment">Base Price</th>
-          <td className="payment-price">${basePrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-        </tr>
-        {/* <br /> */}
-        {configs}
-        {/* <br /> */}
-        { configPrice <= discConfigPrice ? null : 
+    <div className="summary">
+      <table className="summary-content">
+        <tbody>
           <tr>
-            <th className="payment--config">*** Discount ***</th>
-            <td className="payment-price--config">(-${configPrice - discConfigPrice})</td>
-          </tr>}
-        <tr>
-          <th className="payment">Configurations Price</th>
-          <td className="payment-price">${discConfigPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-        </tr>
-        {/* <br /> */}
-        <tr>
-          <th className="payment">Administration Fee</th>
-          <td className="payment-price">${adminFee.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-        </tr>
-        <tr>
-          <th className="payment">Total</th>
-          <td className="payment-price">${totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-        </tr>
-      </tbody>
-    </table>
+            <th className="payment">Base Price</th>
+            <td className="payment-price">${basePrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+          </tr>
+          {configs}
+          { configPrice <= discConfigPrice ? null : 
+            <tr>
+              <th className="payment--config">*** Discount ***</th>
+              <td className="payment-price--config">(-${configPrice - discConfigPrice})</td>
+            </tr>}
+          <tr>
+            <th className="payment">Configurations Price</th>
+            <td className="payment-price">${discConfigPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+          </tr>
+          <tr>
+            <th className="payment">Administration Fee</th>
+            <td className="payment-price">${adminFee.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+          </tr>
+          <tr>
+            <th className="payment">Total</th>
+            <td className="payment-price">${totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   )
 }
 

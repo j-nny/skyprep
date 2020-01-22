@@ -46,12 +46,14 @@ const addToCart = (item) => {
 // Creates a checkbox component for each option listed
 const createAddOnOptions = addOnOptions.map(option => {
   return (
-    <AddOns 
-      label={option.add_on}
-      price={option.price}
-      key={option.id}
-      onClick={() => addToCart(option.add_on)}
-    />
+    <button>
+      <AddOns 
+        label={option.add_on}
+        price={option.price}
+        key={option.id}
+        id={option.id}
+      />
+    </button>
   )
 })
 
@@ -72,11 +74,9 @@ function App() {
         {createAddOnOptions}
       </div>
       <br />
-      <h2 className="heading">Payment Summary</h2>
+      <h2 className="heading">Price Summary</h2>
       <br />
-      <div className="summary">
         <Summary />
-      </div>
     </main>
   );
 }
