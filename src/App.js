@@ -1,4 +1,5 @@
 import React from 'react';
+
 import logo from './logo.svg';
 import './App.css';
 import AddOns from './components/AddOns';
@@ -6,6 +7,7 @@ import Summary from './components/Summary';
 
 // Data
 export const basePrice = 24999
+export const salesTax = 0.13
 export const addOnOptions = [
   {
     "id" : 1,
@@ -39,9 +41,9 @@ export const addOnOptions = [
   }
 ]
 
-const addToCart = (item) => {
-  console.log('hi', item)
-}
+// const handleClick = (id) => {
+//   addToCart(id);
+// }
 
 // Creates a checkbox component for each option listed
 const createAddOnOptions = addOnOptions.map(option => {

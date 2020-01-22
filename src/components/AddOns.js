@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addToSummary } from './actions/summaryActions'
 
 import '../styles/addOns.css'
 
-const addToCart = (label) => {
-  console.log(label)
-}
+
 
 // checkbox component for given option
-function AddOns({ label, price, id }) {
+class AddOns extends Component{
+  render() {
+
+    const handleClick = (id) => {
+      this.props.addToSummary(id)
+    }
+
   return (
-    <div className="add-on--option" onClick={() => addToCart(id)}>
-      <span className="add-on--name">{label} ${price}</span>
+    <div className="add-on--option" onClick={() => handleClick(this.props.id)}>
+      <span className="add-on--name">{this.props.label} ${this.props.price}</span>
     </div>
   )
+  }
 }
 
-export default AddOns
+const mapStateToProps = (state)=>{
+  return {
+    configs: state.configs
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      addToSummary: (id)=>{dispatch(addToSummary(id))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddOns);

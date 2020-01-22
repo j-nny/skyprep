@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { calcConfigPrice, calcDiscountedConfigPrice, calcAdminFee, calcTotalPrice } from '../algorithms/pricing-calculator';
-import { basePrice, addOnOptions } from '../App'
+import { basePrice, salesTax } from '../App'
 
 import '../styles/summary.css'
 
-function Summary() {
-  const configPrice = calcConfigPrice(addOnOptions);
-  const discConfigPrice = calcDiscountedConfigPrice(addOnOptions);
+class Summary extends Component{
+  render() {
+  const configPrice = calcConfigPrice(this.props.configs);
+  const discConfigPrice = calcDiscountedConfigPrice(this.props.configs);
 
   //maps through each configuration selected to show data in summary
-  const configs = addOnOptions.map(config => {
+  console.log('hiiii', this.props)
+  const allAddedConfigs = this.props.configs.map(config => {
     return (
       <tr>
         <th className="payment--config">{config.add_on}</th>
@@ -18,8 +21,8 @@ function Summary() {
       </tr>
     )
   })
-  const adminFee = calcAdminFee(addOnOptions);
-  const totalPrice = calcTotalPrice(addOnOptions)
+  const adminFee = calcAdminFee(this.props.configs);
+  const totalPrice = calcTotalPrice(this.props.configs)
 
   return (
     <div className="summary">
@@ -29,7 +32,7 @@ function Summary() {
             <th className="payment">Base Price</th>
             <td className="payment-price">${basePrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
           </tr>
-          {configs}
+          {allAddedConfigs}
           { configPrice <= discConfigPrice ? null : 
             <tr>
               <th className="payment--config">*** Discount ***</th>
@@ -44,6 +47,10 @@ function Summary() {
             <td className="payment-price">${adminFee.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
           </tr>
           <tr>
+            <th className="payment">Sales Tax</th>
+            <td className="payment-price">${(totalPrice * salesTax).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+          </tr>
+          <tr>
             <th className="payment">Total</th>
             <td className="payment-price">${totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
           </tr>
@@ -52,5 +59,12 @@ function Summary() {
     </div>
   )
 }
+}
 
-export default Summary
+const mapStateToProps = (state) => {
+  return {
+    configs: state.addedConfigs
+  }
+}
+
+export default connect(mapStateToProps)(Summary);
