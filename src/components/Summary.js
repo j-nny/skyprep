@@ -37,12 +37,12 @@ function Summary() {
             <td className="payment-price--config">(-${configPrice - discConfigPrice})</td>
           </tr>}
         <tr>
-          <th className="payment">Config Total Price</th>
+          <th className="payment">Configurations Price</th>
           <td className="payment-price">${discConfigPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
         </tr>
         {/* <br /> */}
         <tr>
-          <th className="payment">Admin Fee</th>
+          <th className="payment">Administration Fee</th>
           <td className="payment-price">${adminFee.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
         </tr>
         <tr>
