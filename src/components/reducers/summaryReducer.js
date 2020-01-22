@@ -38,8 +38,6 @@ const initState = {
 }
 
 const summaryReducer = (state = initState, action) => {
-  console.log('noooo', state);
-  console.log('yesss', action);
   if (action.type === ADD_TO_SUMMARY){
     let addedConfig = state.configs.find(config => config.id === action.id)
     let existingConfig = state.addedConfigs.find(config => action.id === config.id)

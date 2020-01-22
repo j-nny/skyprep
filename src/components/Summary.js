@@ -11,7 +11,6 @@ class Summary extends Component{
   const discConfigPrice = calcDiscountedConfigPrice(this.props.configs);
 
   //maps through each configuration selected to show data in summary
-  console.log('hiiii', this.props)
   const allAddedConfigs = this.props.configs.map(config => {
     return (
       <tr>
