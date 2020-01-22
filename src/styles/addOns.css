@@ -1,0 +1,19 @@
+.add-on--option {
+  margin: 2rem;
+  padding: 1rem;
+  width: 35rem;
+  height: 15rem;
+  background-color: #f7f7f7;
+  border-radius: 1rem;
+}
+
+.add-on--options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.add-on--name {
+  padding: 1rem;
+  background-color: #f7f7f7;
+}

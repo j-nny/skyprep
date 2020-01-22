@@ -1,0 +1,31 @@
+.summary {
+  display: flex;
+  justify-content: center;
+}
+
+.summary-content {
+  width: 70vw;
+  text-align: left;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+}
+
+.payment {
+  padding: .5rem 1rem .5rem 1rem;
+  background-color: #f7f7f7;
+}
+
+.payment--config {
+  padding: .5rem 1rem .5rem 3rem;
+  background-color: #f7f7f7;
+}
+
+.payment-price {
+  padding: .5rem 1rem .5rem 10rem;
+  background-color: #f7f7f7;
+}
+
+.payment-price--config {
+  padding: .5rem 1rem .5rem 13rem;
+  background-color: #f7f7f7;
+}

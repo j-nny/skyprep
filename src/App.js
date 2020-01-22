@@ -8,41 +8,49 @@ import Summary from './components/Summary';
 export const basePrice = 24999
 export const addOnOptions = [
   {
+    "id" : 1,
     "add_on" : "AWD Drivetrain",
     "price" : 2500
   },
   {
+    "id" : 2,
     "add_on" : "GPS Navigation",
     "price" : 2000
   },
   {
+    "id" : 3,
     "add_on" : "Winter Tire Package",
     "price" : 2000
   },
   {
+    "id" : 4,
     "add_on" : "Sport Package",
     "price" : 3500
   },
   {
+    "id" : 5,
     "add_on" : "Live Traffic Updates",
     "price" : 1500
   },
   {
+    "id" : 6,
     "add_on" : "Roadside Assistance",
     "price" : 2500
   }
 ]
-const adminBaseFee = 1200
-const adminPercentFee = 0.02
-const discountMin = 8000
-const discount = 0.5
-const salesTax = 0.13
 
+const addToCart = (item) => {
+  console.log('hi', item)
+}
+
+// Creates a checkbox component for each option listed
 const createAddOnOptions = addOnOptions.map(option => {
   return (
     <AddOns 
       label={option.add_on}
-      key={option.addOn}
+      price={option.price}
+      key={option.id}
+      onClick={() => addToCart(option.add_on)}
     />
   )
 })
@@ -50,17 +58,25 @@ const createAddOnOptions = addOnOptions.map(option => {
 function App() {
   return (
     <main>
-      <img
-        src="images/car.png"
-        alt="New car"
-        height="100rem"
-      />
+      <div className="img-box">
+        <img
+          src="images/car.png"
+          alt="New car"
+          className="car"
+        />
+      </div>
       <br /><br />
-      <h3>Add Ons:</h3>
-      {createAddOnOptions}
+      <h2 className="heading">Add Ons:</h2>
+      <div className="add-on--options">
+        <br />
+        {createAddOnOptions}
+      </div>
       <br />
-      <h3>Payment Summary</h3>
-      <Summary />
+      <h2 className="heading">Payment Summary</h2>
+      <br />
+      <div className="summary">
+        <Summary />
+      </div>
     </main>
   );
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import { calcConfigPrice, calcDiscountedConfigPrice, calcAdminFee, calcTotalPrice } from '../algorithms/pricing-calculator';
 import { basePrice, addOnOptions } from '../App'
 
+import '../styles/summary.css'
+
 function Summary() {
   const configPrice = calcConfigPrice(addOnOptions);
   const discConfigPrice = calcDiscountedConfigPrice(addOnOptions);
@@ -10,8 +12,9 @@ function Summary() {
   const configs = addOnOptions.map(config => {
     return (
       <tr>
-        <th>{config.add_on}</th>
-        <td>${config.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+        <th className="payment--config">{config.add_on}</th>
+        {/* Regexp matches numbers followed by one or more sets of 3 digits, and places a comma */}
+        <td className="payment-price--config">(${config.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')})</td>
       </tr>
     )
   })
@@ -19,32 +22,34 @@ function Summary() {
   const totalPrice = calcTotalPrice(addOnOptions)
 
   return (
-    <table>
-      <tr>
-        <th>Base Price</th>
-        <td>${basePrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-      </tr>
-      <br />
-      {configs}
-      <br />
-      { configPrice <= discConfigPrice ? null : 
+    <table className="summary-content">
+      <tbody>
         <tr>
-          <th>Discount</th>
-          <td>- ${configPrice - discConfigPrice}</td>
-        </tr>}
-      <tr>
-        <th>Config Total Price</th>
-        <td>${discConfigPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-      </tr>
-      <br />
-      <tr>
-        <th>Admin Fee</th>
-        <td>${adminFee.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-      </tr>
-      <tr>
-        <th>Total</th>
-        <td>${totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-      </tr>
+          <th className="payment">Base Price</th>
+          <td className="payment-price">${basePrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+        </tr>
+        {/* <br /> */}
+        {configs}
+        {/* <br /> */}
+        { configPrice <= discConfigPrice ? null : 
+          <tr>
+            <th className="payment--config">*** Discount ***</th>
+            <td className="payment-price--config">(-${configPrice - discConfigPrice})</td>
+          </tr>}
+        <tr>
+          <th className="payment">Config Total Price</th>
+          <td className="payment-price">${discConfigPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+        </tr>
+        {/* <br /> */}
+        <tr>
+          <th className="payment">Admin Fee</th>
+          <td className="payment-price">${adminFee.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+        </tr>
+        <tr>
+          <th className="payment">Total</th>
+          <td className="payment-price">${totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+        </tr>
+      </tbody>
     </table>
   )
 }

@@ -1,15 +1,20 @@
 import React from 'react';
 
-function AddOns({label}) {
+import '../styles/addOns.css'
+
+// checkbox component for given option
+function AddOns({ label, isSelected, price, id }) {
   return (
-    <div className="add-ons-form">
-      <label>
+    <div className="add-on--option">
+      {/* <label>
         <input 
           type="checkbox"
           name={label}
-        />
-        {label}
-      </label>
+          key={id}
+          isSelected={isSelected}
+        /> */}
+        <span className="add-on--name">{label} ${price}</span>
+      {/* </label> */}
     </div>
   )
 }
