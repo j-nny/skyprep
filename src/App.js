@@ -48,7 +48,7 @@ export const addOnOptions = [
 // Creates a checkbox component for each option listed
 const createAddOnOptions = addOnOptions.map(option => {
   return (
-    <button>
+    <button className="normalize">
       <AddOns 
         label={option.add_on}
         price={option.price}
