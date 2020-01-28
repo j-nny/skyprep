@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { removeFromSummary } from './actions/summaryActions'
+import { removeFromSummary, resetSummary } from './actions/summaryActions'
 import { basePrice, salesTax, calcConfigPrice, calcDiscountedConfigPrice, calcAdminFee, calcTotalPrice } from '../algorithms/pricing-calculator';
 
 import '../styles/summary.css'
@@ -12,6 +12,10 @@ class Summary extends Component{
 
   const handleRemoveClick = id => {
     this.props.removeFromSummary(id)
+  }
+
+  const handleResetClick = () => {
+    this.props.resetSummary()
   }
 
   //maps through each configuration selected to show data in summary
@@ -58,6 +62,9 @@ class Summary extends Component{
             <th className="payment">Total</th>
             <td className="payment-price">${totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
           </tr>
+          <tr className="payment">
+            <button className="payment-reset" onClick={() => handleResetClick()}>Clear all configurations</button>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -73,7 +80,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      removeFromSummary: (id) => {dispatch(removeFromSummary(id))}
+      removeFromSummary: (id) => {dispatch(removeFromSummary(id))},
+      resetSummary: () => {dispatch(resetSummary())}
   }
 }
 
