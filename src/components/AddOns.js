@@ -22,15 +22,15 @@ class AddOns extends Component{
   }
 }
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = state =>{
   return {
     configs: state.configs
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-      addToSummary: (id)=>{dispatch(addToSummary(id))}
+    addToSummary: (id)=>{dispatch(addToSummary(id))}
   }
 }
 

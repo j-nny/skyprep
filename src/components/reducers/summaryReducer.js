@@ -1,4 +1,4 @@
-import { ADD_TO_SUMMARY } from "../actions/action-types/summary-actions";
+import { ADD_TO_SUMMARY, REMOVE_FROM_SUMMARY } from "../actions/action-types/summary-actions";
 
 const initState = {
   configs: [
@@ -33,8 +33,7 @@ const initState = {
       "price" : 2500
     }
   ],
-  addedConfigs: [],
-  total: 0
+  addedConfigs: []
 }
 
 const summaryReducer = (state = initState, action) => {
@@ -49,9 +48,19 @@ const summaryReducer = (state = initState, action) => {
         addedConfigs: [...state.addedConfigs, addedConfig]
       }
     }
+  } else if (action.type === REMOVE_FROM_SUMMARY) {
+    console.log(action)
+    console.log(state)
+    let newConfig = state.addedConfigs.filter(config => config.id !== action.id)
+    console.log(newConfig)
+      return {
+        ...state,
+        addedConfigs: newConfig
+      }
   } else {
     return state;
   }
 }
+
 
 export default summaryReducer

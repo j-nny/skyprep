@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { calcConfigPrice, calcDiscountedConfigPrice, calcAdminFee, calcTotalPrice } from '../algorithms/pricing-calculator';
-import { basePrice, salesTax } from '../App'
+import { removeFromSummary } from './actions/summaryActions'
+import { basePrice, salesTax, calcConfigPrice, calcDiscountedConfigPrice, calcAdminFee, calcTotalPrice } from '../algorithms/pricing-calculator';
 
 import '../styles/summary.css'
 
@@ -10,6 +10,10 @@ class Summary extends Component{
   const configPrice = calcConfigPrice(this.props.configs);
   const discConfigPrice = calcDiscountedConfigPrice(this.props.configs);
 
+  const handleRemoveClick = id => {
+    this.props.removeFromSummary(id)
+  }
+
   //maps through each configuration selected to show data in summary
   const allAddedConfigs = this.props.configs.map(config => {
     return (
@@ -17,6 +21,7 @@ class Summary extends Component{
         <th className="payment--config">{config.add_on}</th>
         {/* Regexp matches numbers followed by one or more sets of 3 digits, and places a comma */}
         <td className="payment-price--config">(${config.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')})</td>
+        <td className="payment-remove--config"><button onClick={() => handleRemoveClick(config.id)}>X</button></td>
       </tr>
     )
   })
@@ -66,4 +71,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Summary);
+const mapDispatchToProps = (dispatch) => {
+  return {
+      removeFromSummary: (id) => {dispatch(removeFromSummary(id))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Summary);

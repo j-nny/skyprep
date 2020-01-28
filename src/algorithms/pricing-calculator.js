@@ -28,7 +28,7 @@ const calcConfigPrice = pkg => {
 
 // Assumes discounts are applied after a monetary amount of $8000 is reached
 const calcDiscountedConfigPrice = pkg => {
-  let configPrice = pkg.reduce((acc, cur) => acc + cur.price, 0)
+  let configPrice = calcConfigPrice(pkg)
   return configPrice > discountMin ? discountMin + discount * (configPrice - discountMin) : configPrice
 }
 
@@ -47,6 +47,6 @@ const totalStatement = (pkg) => {
   return `The total cost for this car is ${calcTotalPrice(pkg).toFixed(2)} with the following configurations: ${packageAddOns.join(', ')}`
 }
 
-export { calcConfigPrice, calcDiscountedConfigPrice, calcAdminFee, calcTotalPrice }
+export { basePrice, salesTax, calcConfigPrice, calcDiscountedConfigPrice, calcAdminFee, calcTotalPrice }
 
 console.log(totalStatement(configurations))

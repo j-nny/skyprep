@@ -1,4 +1,4 @@
-import { ADD_TO_SUMMARY } from './action-types/summary-actions'
+import { ADD_TO_SUMMARY, REMOVE_FROM_SUMMARY } from './action-types/summary-actions'
 
 export const addToSummary = (id) => {
   return {
@@ -6,3 +6,10 @@ export const addToSummary = (id) => {
       id 
     }
   }
+
+export const removeFromSummary = (id) => {
+  return {
+    type: REMOVE_FROM_SUMMARY,
+    id
+  }
+}
